@@ -27,17 +27,16 @@ has_one :destinations
 |Column|Type|Options|
 |------|----|-------|
 |name  |string  |null: false  |
-|price  |integer  |null: false  |
 |description  |text  |null: false  |
-|status  |string  |null: false  |
-|size  |string  |null: false  |
-|shipping_fee  |string  |null: false  |
-|shipping_days  |string  |null: false  |
-|prefecture_id |string  |null: false  |
 |category_id  |integer  |null: false |
-|brand_id  |integer  |null: false  |
-|shipping_id  |integer  |null: false  |
-|user_id  |integer  |null: false  |
+|status_id  |integer  |null: false  |
+|shipping_cost_id  |integer  |null: false  |
+|prefecture_id |integer  |null: false  |
+|shipping_days_id  |integer  |null: false  |
+|price  |integer  |null: false  |
+|user_id  |integer  |null: false, foreign: key  |
+|purchase_id  |integer  |null: false, foreign: key  |
+
 
 
 ### Association
@@ -52,7 +51,7 @@ belongs_to :users
 |Column|Type|Options|
 |------|----|-------|
 |post_code  |string  |null: false  |
-|prefecture  |string  |null: false  |
+|prefecture_id  |integer  |null: false  |
 |city  |string  |null: false  |
 |address  |string  |null: false  |
 |building_name  |string  |  |
@@ -69,9 +68,6 @@ belongs_to :users
 |Column|Type|Options|
 |------|----|-------|
 |user_id  |integer  |null: false, foreign_key: true  |
-|purchase_id  |string  |null: false  |
-|card_id  |string  |null: false  |
-
 
 ### Association
 belongs_to :users
