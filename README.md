@@ -16,8 +16,8 @@
 
 ### Association
 has_many :items
-has_one :cards
 has_one :destinations
+has_many :orders
 
 
 
@@ -41,6 +41,7 @@ has_one :destinations
 
 ### Association
 belongs_to :users
+has_one :orders
 
 
 
@@ -55,7 +56,7 @@ belongs_to :users
 |city  |string  |null: false  |
 |address  |string  |null: false  |
 |building_name  |string  |  |
-|phone_number  |string  |  |
+|phone_number  |string  |null: false  |
 
 
 ### Association
@@ -63,11 +64,15 @@ belongs_to :users
 
 
 
-## cardsテーブル
+
+## ordersテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|user_id  |integer  |null: false, foreign_key: true  |
+|user_id  |integer  |null: false, foreign: key  |
+|items_id  |integer  |null: false, foreign: key  |
+
 
 ### Association
 belongs_to :users
+belongs_to :items
