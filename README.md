@@ -34,8 +34,8 @@ has_many :orders
 |prefecture_id |integer  |null: false  |
 |shipping_days_id  |integer  |null: false  |
 |price  |integer  |null: false  |
-|user_id  |integer  |null: false, foreign: key  |
-|purchase_id  |integer  |null: false, foreign: key  |
+|user_id  |integer  |null: false, foreign_key: true  |
+|purchase_id  |integer  |null: false, foreign_key: true  |
 
 
 
@@ -69,8 +69,8 @@ belongs_to :users
 
 |Column|Type|Options|
 |------|----|-------|
-|user_id  |integer  |null: false, foreign: key  |
-|items_id  |integer  |null: false, foreign: key  |
+|user_id  |integer  |null: false, foreign_key: true  |
+|items_id  |integer  |null: false, foreign_key: true  |
 
 
 ### Association
