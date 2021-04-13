@@ -16,7 +16,6 @@
 
 ### Association
 has_many :items
-has_one :destinations
 has_many :orders
 
 
@@ -35,13 +34,13 @@ has_many :orders
 |shipping_days_id  |integer  |null: false  |
 |price  |integer  |null: false  |
 |user_id  |integer  |null: false, foreign_key: true  |
-|purchase_id  |integer  |null: false, foreign_key: true  |
+|order_id  |integer  |null: false, foreign_key: true  |
 
 
 
 ### Association
-belongs_to :users
-has_one :orders
+belongs_to :user
+has_one :order
 
 
 
@@ -60,7 +59,7 @@ has_one :orders
 
 
 ### Association
-belongs_to :users
+has_one :order
 
 
 
@@ -70,9 +69,12 @@ belongs_to :users
 |Column|Type|Options|
 |------|----|-------|
 |user_id  |integer  |null: false, foreign_key: true  |
-|items_id  |integer  |null: false, foreign_key: true  |
+|item_id  |integer  |null: false, foreign_key: true  |
+|destination_id  |integer  |null: false, foreign_key: true  |
 
 
 ### Association
-belongs_to :users
-belongs_to :items
+belongs_to :user
+belongs_to :item
+belongs_to :destination
+
