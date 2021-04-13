@@ -34,8 +34,6 @@ has_many :orders
 |shipping_days_id  |integer  |null: false  |
 |price  |integer  |null: false  |
 |user_id  |integer  |null: false, foreign_key: true  |
-|order_id  |integer  |null: false, foreign_key: true  |
-
 
 
 ### Association
@@ -56,10 +54,12 @@ has_one :order
 |address  |string  |null: false  |
 |building_name  |string  |  |
 |phone_number  |string  |null: false  |
+|order_id  |integer  |null: false, foreign_key: true  |
+
 
 
 ### Association
-has_one :order
+belongs_to :order
 
 
 
@@ -70,11 +70,9 @@ has_one :order
 |------|----|-------|
 |user_id  |integer  |null: false, foreign_key: true  |
 |item_id  |integer  |null: false, foreign_key: true  |
-|destination_id  |integer  |null: false, foreign_key: true  |
 
 
 ### Association
 belongs_to :user
 belongs_to :item
-belongs_to :destination
-
+has_one :destination
