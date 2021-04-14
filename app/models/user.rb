@@ -15,8 +15,8 @@ class User < ApplicationRecord
   end
 
   with_options presence: true, format: { with: /[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+/, message: '全角文字を使用してください' } do
-    validates :last_name_kana,
-    validates :first_name_kana,
+    validates :last_name_kana
+    validates :first_name_kana
   end
   
   validates :birth_date, presence: true
