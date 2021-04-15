@@ -6,7 +6,7 @@ RSpec.describe User, type: :model do
       @user = FactoryBot.build(:user)
     end
 
-    it "nicknam、email、password、password_confirmation、last_name、first_name、last_name_kana、first_name_kana、bith_dateが存在すれば登録ができること" do
+    it "nickname、email、password、password_confirmation、last_name、first_name、last_name_kana、first_name_kana、bith_dateが存在すれば登録ができること" do
       expect(@user).to be_valid
     end
 
