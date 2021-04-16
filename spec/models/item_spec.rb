@@ -12,11 +12,6 @@ RSpec.describe Item, type: :model do
         expect(@item).to be_valid
       end  
 
-      # it "imageは一枚添付していれば出品ができること" do
-      #   @item.image = 'a.png'
-      #   expect(@item).to be_valid
-      # end
-
       it "priceは¥300以上であれば出品できること" do
         @item.price = 300
         expect(@item).to be_valid
