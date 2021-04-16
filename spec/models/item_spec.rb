@@ -12,10 +12,10 @@ RSpec.describe Item, type: :model do
         expect(@item).to be_valid
       end  
 
-      it "imageは一枚添付していれば出品ができること" do
-        @item.image = 'a.png'
-        expect(@item).to be_valid
-      end
+      # it "imageは一枚添付していれば出品ができること" do
+      #   @item.image = 'a.png'
+      #   expect(@item).to be_valid
+      # end
 
       it "priceは¥300以上であれば出品できること" do
         @item.price = 300
@@ -111,6 +111,12 @@ RSpec.describe Item, type: :model do
         @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+      end
+
+      it "imageが空だと出品できないこと" do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Image can't be blank")
       end
     end  
   end

@@ -8,6 +8,7 @@ FactoryBot.define do
     shipping_days_id {2}
     status_id {2}
     price {2222}
+    image {Faker::Lorem.sentence}
 
     association :user
 
