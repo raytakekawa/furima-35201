@@ -29,8 +29,8 @@ class OrdersController < ApplicationController
   end
 
   def move_to_index
-    unless @item.order.blank? || @item.user.id == current_user.id
-      redirect_to root_path
+    if @item.user.id == current_user.id || @item.order.present?
+      redirect_to action: :index
     end
   end
 
