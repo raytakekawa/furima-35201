@@ -4,6 +4,7 @@ RSpec.describe OrderDestination, type: :model do
   describe '#create' do
     before do
       user = FactoryBot.create(:user)
+      item = FactoryBot.create(:item)
       @order_destination = FactoryBot.build(:order_destination, user_id: user.id)
     end
 
@@ -27,7 +28,7 @@ RSpec.describe OrderDestination, type: :model do
       end
 
       it "post_codeはハイフンなしでは購入できないこと" do
-        @order_destination.post_code = 0000001
+        @order_destination.post_code = '0000001'
         @order_destination.valid?
         expect(@order_destination.errors.full_messages).to include("Post code Input correctly")
       end
@@ -74,7 +75,7 @@ RSpec.describe OrderDestination, type: :model do
         expect(@order_destination.errors.full_messages).to include("User can't be blank")
       end
 
-      it "item_idが空では購入できないこと" do
+      it "itemが結びついていないと購入できないこと" do
         @order_destination.item_id = nil
         @order_destination.valid?
         expect(@order_destination.errors.full_messages).to include("Item can't be blank")
