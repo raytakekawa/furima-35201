@@ -5,9 +5,6 @@ class OrdersController < ApplicationController
 
   def index
     @order_destination = OrderDestination.new
-    if @item.user.id == current_user.id
-      redirect_to root_path
-    end
   end
 
   def create
@@ -32,7 +29,7 @@ class OrdersController < ApplicationController
   end
 
   def move_to_index
-    unless @item.order.blank? 
+    unless @item.order.blank? || @item.user.id == current_user.id
       redirect_to root_path
     end
   end
