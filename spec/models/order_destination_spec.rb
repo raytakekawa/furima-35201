@@ -11,6 +11,11 @@ RSpec.describe OrderDestination, type: :model do
       it 'すべての値が正しく入力されていれば保存できること' do
         expect(@order_destination).to be_valid
       end
+
+      it '建物名がなくても保存できること' do
+        @order_destination.building_name = nil
+        expect(@order_destination).to be_valid
+      end
     end
 
     context '商品購入できない時' do
@@ -19,6 +24,12 @@ RSpec.describe OrderDestination, type: :model do
         @order_destination.post_code = ''
         @order_destination.valid?
         expect(@order_destination.errors.full_messages).to include("Post code can't be blank")
+      end
+
+      it "post_codeはハイフンなしでは購入できないこと" do
+        @order_destination.post_code = 0000001
+        @order_destination.valid?
+        expect(@order_destination.errors.full_messages).to include("Post code Input correctly")
       end
 
       it "prefecture_idが1では購入できないこと" do
@@ -45,10 +56,28 @@ RSpec.describe OrderDestination, type: :model do
         expect(@order_destination.errors.full_messages).to include("Phone number can't be blank")
       end
 
+      it "phone_numberは英数混合では購入できないこと" do
+        @order_destination.phone_number = '0900000aaaa'
+        @order_destination.valid?
+        expect(@order_destination.errors.full_messages).to include("Phone number Input only number")
+      end
+
+      it "phone_numberは十二桁以上では購入できないこと" do
+        @order_destination.phone_number = '090000000000'
+        @order_destination.valid?
+        expect(@order_destination.errors.full_messages).to include("Phone number Input only number")
+      end
+
       it 'userが紐付いていないと保存できないこと' do
         @order_destination.user_id = nil
         @order_destination.valid?
         expect(@order_destination.errors.full_messages).to include("User can't be blank")
+      end
+
+      it "item_idが空では購入できないこと" do
+        @order_destination.item_id = nil
+        @order_destination.valid?
+        expect(@order_destination.errors.full_messages).to include("Item can't be blank")
       end
 
       it "tokenが空では登録できないこと" do

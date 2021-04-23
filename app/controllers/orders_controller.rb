@@ -5,6 +5,9 @@ class OrdersController < ApplicationController
 
   def index
     @order_destination = OrderDestination.new
+    if @item.user.id == current_user.id
+      redirect_to root_path
+    end
   end
 
   def create
@@ -21,7 +24,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order_destination).permit(:post_code, :prefecture_id, :city, :address, :building_name, :phone_number, :order_id, :user_id, :item_id).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.require(:order_destination).permit(:post_code, :prefecture_id, :city, :address, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   def set_item
@@ -29,7 +32,7 @@ class OrdersController < ApplicationController
   end
 
   def move_to_index
-    if @item.order.present? 
+    unless @item.order.blank? 
       redirect_to root_path
     end
   end
