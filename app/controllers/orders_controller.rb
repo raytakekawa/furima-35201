@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item
-  before_action :move_to_index
+  before_action :move_to_index, except: :index
 
   def index
     @order_destination = OrderDestination.new
