@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item
-  before_action :move_to_index, except: :index
+  before_action :move_to_index
 
   def index
     @order_destination = OrderDestination.new
@@ -30,7 +30,7 @@ class OrdersController < ApplicationController
 
   def move_to_index
     if @item.user.id == current_user.id || @item.order.present?
-      redirect_to action: :index
+      redirect_to root_path
     end
   end
 
